@@ -40,76 +40,61 @@ const PublicNavbar = () => {
 
         {/* Navbar links for larger screens and mobile */}
         <ul className="hidden md:flex items-center space-x-8 ml-auto px-4 sm:px-6 lg:px-5">
-          <li
-            onClick={() => handleRoute("technology")}
-            className="cursor-pointer"
-          >
-            <a
-              href="technology"
+          <li className="cursor-pointer">
+            <Link
+              to="/technology"
               className="text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2"
             >
               Technology
-            </a>
+            </Link>
           </li>
-          <li
-            onClick={() => handleRoute("investor")}
-            className="cursor-pointer"
-          >
-            <a
-              href="investor"
+          <li className="cursor-pointer">
+            <Link
+              to="/investor"
               className="text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2"
             >
               Investors
-            </a>
+            </Link>
           </li>
-          <li onClick={() => handleRoute("careers")} className="cursor-pointer">
-            <a
-              href="careers"
+          <li className="cursor-pointer">
+            <Link
+              to="/careers"
               className="text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2"
             >
               Careers
-            </a>
+            </Link>
           </li>
-          <li onClick={() => handleRoute("news")} className="cursor-pointer">
-            <a
-              href="news"
+          <li className="cursor-pointer">
+            <Link
+              to="/news"
               className="text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2"
             >
               News
-            </a>
+            </Link>
           </li>
-          <li
-            onClick={() => handleRoute("resources")}
-            className="cursor-pointer"
-          >
-            <a
-              href="resources"
+          <li className="cursor-pointer">
+            <Link
+              to="/resources"
               className="text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2"
             >
               Resources
-            </a>
+            </Link>
           </li>
-          <li
-            onClick={() => handleRoute("about-us")}
-            className="cursor-pointer"
-          >
-            <a
-              href="about-us"
+          <li className="cursor-pointer">
+            <Link
+              to="/about-us"
               className="text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2"
             >
               About Us
-            </a>
+            </Link>
           </li>
-          <li
-            onClick={() => handleRoute("contact-us")}
-            className="cursor-pointer"
-          >
-            <a
-              href="contact-us"
+          <li className="cursor-pointer">
+            <Link
+              to="/contact-us"
               className="text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2"
             >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
         {/* User icon */}
@@ -117,9 +102,7 @@ const PublicNavbar = () => {
           <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
             Sign Up
           </button>
-          <button className="px-4 py-2 text-gray-600 hover:text-gray-900">
-            Log in
-          </button>
+          <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Log in</button>
         </div>
       </div>
     </nav>

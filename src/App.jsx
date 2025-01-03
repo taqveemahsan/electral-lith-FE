@@ -11,7 +11,8 @@ import ContactUs from "./components/navbars/pages/ContactForm/ContactUs";
 import Career from "./components/navbars/pages/Careers/career";
 import News from "./components/navbars/pages/News/News";
 import Resources from "./components/navbars/pages/Resources/Resources";
-
+import ArticleDetail from "./components/navbars/pages/News/ArticleDetail";
+// ye ham use kr rhy hen
 const App = () => {
   return (
     <Router>
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="/careers" element={<Career />} />
             <Route path="/news" element={<News />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/article/:id?" element={<ArticleDetail />} />
           </Route>
 
           {/* Authenticated Routes */}
@@ -35,6 +37,8 @@ const App = () => {
             <Route path="/profile" element={<div>Profile</div>} />
             <Route path="/settings" element={<div>Settings</div>} />
           </Route>
+
+          {/* Dynamic Article Route */}
 
           {/* Fallback for undefined routes */}
           <Route path="*" element={<NotFound />} />
