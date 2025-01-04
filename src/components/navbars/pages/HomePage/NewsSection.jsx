@@ -55,7 +55,7 @@ export default function NewsSection() {
               onClick={() => navigate(`/article/${item.id}`)}
               src={item.image}
               alt={item.title}
-              className="md:w-72 h-48 object-cover rounded-lg cursor-pointer"
+              className="md:w-72 h-auto object-contain rounded-lg cursor-pointer"
             />
             <div className="flex-1">
               <h3 className="text-xl font-semibold mb-2 line-clamp-2">{item.title}</h3>

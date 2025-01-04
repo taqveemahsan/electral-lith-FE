@@ -51,21 +51,23 @@ const AdminBanner = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">Upload Banner Image</h2>
+      <h2 className="text-3xl font-semibold text-center text-indigo-600 mb-6">
+        Upload Banner Image
+      </h2>
       <form onSubmit={handleBannerSubmit} className="bg-white shadow-md p-6 rounded-lg">
         <div className="mb-4">
           <input
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             required
           />
         </div>
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none ${
+          className={`w-full py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none ${
             loading ? "cursor-not-allowed" : "cursor-pointer"
           }`}
         >
@@ -85,7 +87,7 @@ const AdminBanner = () => {
       {/* Display the uploaded banner image if the URL is set */}
       {bannerImageUrl && (
         <div className="mt-8 text-center">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Uploaded Banner:</h3>
+          <h3 className="text-2xl font-semibold text-indigo-800 mb-4">Uploaded Banner:</h3>
           <img
             src={bannerImageUrl}
             alt="Uploaded Banner"
