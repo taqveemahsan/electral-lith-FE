@@ -1,11 +1,14 @@
 import { useState } from "react";
+import axios from "axios";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
-    category: "general",
+    name: "",
     email: "",
     message: "",
   });
+  const [responseMessage, setResponseMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,16 +18,28 @@ const ContactUs = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
+    setLoading(true);
+    setResponseMessage("");
 
-  const categoryOptions = [
-    { value: "general", label: "General" },
-    { value: "support", label: "Support" },
-    { value: "business", label: "Business" },
-  ];
+    try {
+      const { data } = await axios.post(
+        "http://localhost:4001/api/auth/contactus/add",
+        formData, // Send the whole formData object directly
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      setResponseMessage(
+        data.success ? "Your message has been sent successfully!" : `Error: ${data.message}`
+      );
+      if (data.success) setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      setResponseMessage("Failed to send the message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="container mx-auto px-4 mt-4">
@@ -32,21 +47,18 @@ const ContactUs = () => {
       <p className="text-xl text-gray-600 mb-8 mt-4">Send us a message</p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Category Select */}
+        {/* Name Input */}
         <label className="block text-gray-700 font-medium">
-          Select a category
-          <select
-            name="category"
-            value={formData.category}
+          Name
+          <input
+            type="text"
+            name="name"
+            placeholder="Your name"
+            value={formData.name}
             onChange={handleChange}
             className="mt-1 block w-full p-2 border rounded-md"
-          >
-            {categoryOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+            required
+          />
         </label>
 
         {/* Email Input */}
@@ -59,6 +71,7 @@ const ContactUs = () => {
             value={formData.email}
             onChange={handleChange}
             className="mt-1 block w-full p-2 border rounded-md"
+            required
           />
         </label>
 
@@ -72,6 +85,7 @@ const ContactUs = () => {
             onChange={handleChange}
             className="mt-1 block w-full p-2 border rounded-md"
             rows="4"
+            required
           />
         </label>
 
@@ -79,10 +93,22 @@ const ContactUs = () => {
         <button
           type="submit"
           className="px-4 bg-green-600 text-white font-medium py-2 rounded-md hover:bg-green-700 transition"
+          disabled={loading}
         >
-          Submit
+          {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
+
+      {/* Response Message */}
+      {responseMessage && (
+        <p
+          className={`mt-4 text-lg ${
+            responseMessage.startsWith("Error") ? "text-red-600" : "text-green-600"
+          }`}
+        >
+          {responseMessage}
+        </p>
+      )}
     </section>
   );
 };
