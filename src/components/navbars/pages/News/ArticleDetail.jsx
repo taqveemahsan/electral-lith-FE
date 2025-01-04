@@ -33,7 +33,7 @@ const ArticleDetail = () => {
       <img
         src={`http://localhost:4001${article.mediaPath}`} // Correcting the image path
         alt={article.title || "Article Image"}
-        className="  mt-2 rounded-lg w-full h-80  object-cover"
+        className="  mt-2 rounded-lg w-full   "
       />
       <h1 className="text-3xl font-semibold text-gray-900 mt-4">{article.title}</h1>
       <p className="text-gray-600 mt-4">{article.content}</p>

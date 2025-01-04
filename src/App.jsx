@@ -12,7 +12,13 @@ import Career from "./components/navbars/pages/Careers/career";
 import News from "./components/navbars/pages/News/News";
 import Resources from "./components/navbars/pages/Resources/Resources";
 import ArticleDetail from "./components/navbars/pages/News/ArticleDetail";
-// ye ham use kr rhy hen
+
+// Admin Panel Components
+import AdminPanel from "./components/admin/AdminPanel"; // Admin panel main component
+import AdminBanner from "./components/admin/AdminBanner"; // Banner component
+import AdminNews from "./components/admin/AdminNews"; // News management component
+import ManageContact from "./components/admin/ManageContact"; // Import the new component
+import ContactDetail from "./components/admin/ContactDetail";
 const App = () => {
   return (
     <Router>
@@ -38,8 +44,20 @@ const App = () => {
             <Route path="/settings" element={<div>Settings</div>} />
           </Route>
 
-          {/* Dynamic Article Route */}
-
+          {/* Admin Routes */}
+          {/* <Route element={<AuthenticatedRoutes />}>
+            <Route path="/admin" element={<AdminPanel />}>
+              <Route path="banner" element={<AdminBanner />} />
+              <Route path="news" element={<AdminNews />} />
+            </Route>
+          </Route> */}
+          {/* Admin Routes (No Auth Check) */}
+          <Route path="/admin" element={<AdminPanel />}>
+            <Route path="banner" element={<AdminBanner />} />
+            <Route path="news" element={<AdminNews />} />
+            <Route path="contact" element={<ManageContact />} />
+            <Route path="contact/:id" element={<ContactDetail />} />
+          </Route>
           {/* Fallback for undefined routes */}
           <Route path="*" element={<NotFound />} />
         </Routes>
