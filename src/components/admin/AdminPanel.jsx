@@ -143,6 +143,49 @@ const AdminPanel = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Manage Careers */}
+              <div className="bg-white overflow-hidden shadow rounded-lg">
+                <div className="p-5">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                      <svg
+                        className="h-6 w-6 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 9l6 6 6-6"
+                        />
+                      </svg>
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">
+                          Manage Careers
+                        </dt>
+                        <dd className="text-lg font-medium text-gray-900">
+                          Click to manage your career postings
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 px-5 py-3">
+                  <div className="text-sm">
+                    <Link
+                      to="/admin/careers"
+                      className="font-medium text-blue-600 hover:text-blue-500"
+                    >
+                      Go to Manage Careers
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="bg-white shadow rounded-lg">
@@ -151,7 +194,8 @@ const AdminPanel = () => {
                   Content Management
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Manage your banner, news, and contact from this centralized dashboard.
+                  Manage your banner, news, contacts, and career postings from this centralized
+                  dashboard.
                 </p>
                 <div className="border-t border-gray-200 pt-5">
                   <Outlet />

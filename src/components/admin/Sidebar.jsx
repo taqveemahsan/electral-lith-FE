@@ -6,6 +6,7 @@ const menuItems = [
   { title: "Manage Banner", path: "/admin/banner", icon: "🖼️" },
   { title: "Manage News", path: "/admin/news", icon: "📰" },
   { title: "Manage Contact List", path: "/admin/contact", icon: "📋" },
+  { title: "Manage Careers", path: "/admin/careers", icon: "💼" }, // New Item
 ];
 
 const Sidebar = () => {

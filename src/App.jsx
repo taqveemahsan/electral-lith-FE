@@ -19,6 +19,7 @@ import AdminBanner from "./components/admin/AdminBanner"; // Banner component
 import AdminNews from "./components/admin/AdminNews"; // News management component
 import ManageContact from "./components/admin/ManageContact"; // Import the new component
 import ContactDetail from "./components/admin/ContactDetail";
+import ManageCareers from "./components/admin/ManageCareers";
 const App = () => {
   return (
     <Router>
@@ -57,6 +58,7 @@ const App = () => {
             <Route path="news" element={<AdminNews />} />
             <Route path="contact" element={<ManageContact />} />
             <Route path="contact/:id" element={<ContactDetail />} />
+            <Route path="/admin/careers" element={<ManageCareers />} />
           </Route>
           {/* Fallback for undefined routes */}
           <Route path="*" element={<NotFound />} />
