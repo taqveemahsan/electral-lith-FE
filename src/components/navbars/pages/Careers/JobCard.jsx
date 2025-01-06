@@ -1,32 +1,30 @@
 import React from "react";
-import Button from "./Ui/Button";
+import { Link } from "react-router-dom"; // For navigation to job detail page
 
-const JobCard = ({ title, location, department, icon }) => {
-    return (
-        <div className="flex items-center flex-start justify-between p-6 border-b border-gray-100">
-            {/* Left Section: Icon and Job Details */}
-            <div className="flex items-center space-x-4">
-                {/* Icon with Background */}
-                <div
-                    className="bg-[#F5F0E5] rounded-full p-2 flex items-center justify-center w-12 h-12"
-                    style={{ backgroundColor: "#F5F0E5" }}
-                >
-                    <img src={icon} alt={`${title} Icon`} className="w-8 h-8 object-contain" />
-                </div>
-
-                {/* Job Details */}
-                <div>
-                    <h3 className="text-lg font-medium text-gray-900">{title}</h3>
-                    <p className="text-[#F5F0E5] text-sm">
-                        {location} — {department}
-                    </p>
-                </div>
-            </div>
-
-            {/* Right Section: Apply Button */}
-            <Button variant="secondary">Apply now</Button>
+const JobCard = ({ id, title, location, department, icon, description, type }) => {
+  return (
+    <div className="flex items-center justify-between p-6 border rounded-lg shadow-md">
+      <div className="flex items-center space-x-4">
+        <img src={icon} alt="Job Icon" className="w-16 h-16 object-cover" />
+        <div>
+          <h3 className="text-xl font-semibold">{title}</h3>
+          <p className="text-sm text-gray-600">
+            {department} - {type}
+          </p>
+          <p className="text-sm text-gray-500">{location}</p>
         </div>
-    );
+      </div>
+      <div className="flex flex-col items-end">
+        <p className="text-sm text-gray-600 mb-4">{description}</p>
+        <Link
+          to={`/job/${id}`} // Link to job details page
+          className="text-indigo-500 hover:underline"
+        >
+          View Details
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default JobCard;

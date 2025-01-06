@@ -148,7 +148,7 @@ const AdminPanel = () => {
               <div className="bg-white overflow-hidden shadow rounded-lg">
                 <div className="p-5">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                    <div className="flex-shrink-0 bg-indigo-500 rounded-md p-3">
                       <svg
                         className="h-6 w-6 text-white"
                         fill="none"
@@ -179,7 +179,7 @@ const AdminPanel = () => {
                   <div className="text-sm">
                     <Link
                       to="/admin/careers"
-                      className="font-medium text-blue-600 hover:text-blue-500"
+                      className="font-medium text-indigo-600 hover:text-blue-500"
                     >
                       Go to Manage Careers
                     </Link>

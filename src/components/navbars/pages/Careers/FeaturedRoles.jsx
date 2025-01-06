@@ -46,6 +46,7 @@ const FeaturedRoles = () => {
         {jobs.map((job) => (
           <JobCard
             key={job.id}
+            id={job.id} // Passing the job id
             title={job.title}
             location={job.location}
             department={job.category} // Assuming 'category' maps to department

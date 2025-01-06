@@ -20,6 +20,7 @@ import AdminNews from "./components/admin/AdminNews"; // News management compone
 import ManageContact from "./components/admin/ManageContact"; // Import the new component
 import ContactDetail from "./components/admin/ContactDetail";
 import ManageCareers from "./components/admin/ManageCareers";
+import JobDetails from "./components/admin/JobDetails";
 const App = () => {
   return (
     <Router>
@@ -33,6 +34,8 @@ const App = () => {
             <Route path="/about-us" element={<About />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/careers" element={<Career />} />
+            <Route path="/job/:id" element={<JobDetails />} />
+
             <Route path="/news" element={<News />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/article/:id?" element={<ArticleDetail />} />
@@ -58,7 +61,9 @@ const App = () => {
             <Route path="news" element={<AdminNews />} />
             <Route path="contact" element={<ManageContact />} />
             <Route path="contact/:id" element={<ContactDetail />} />
-            <Route path="/admin/careers" element={<ManageCareers />} />
+
+            <Route path="careers" element={<ManageCareers />} />
+            {/* <Route path="job/:id" element={<JobDetails />} /> */}
           </Route>
           {/* Fallback for undefined routes */}
           <Route path="*" element={<NotFound />} />
