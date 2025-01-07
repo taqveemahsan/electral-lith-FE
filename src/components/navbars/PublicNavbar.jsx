@@ -1,11 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useState } from "react";
 const PublicNavbar = () => {
+  const [isActive, setIsActive] = useState("Technology");
   const navigate = useNavigate();
   const handleRoute = (path) => {
     navigate(path);
     // console.log(`Navigating to: ${path}`);
     // localStorage.setItem("user", true);
+  };
+  const handleNavigate = (item) => {
+    if (item == isActive) {
+      setIsActive(item);
+    }
   };
 
   return (
@@ -43,7 +50,10 @@ const PublicNavbar = () => {
           <li className="cursor-pointer">
             <Link
               to="/technology"
-              className="text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2"
+              className={`text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2  ${
+                "Technology" == isActive && "bg-red-400"
+              }`}
+              onClick={() => handleNavigate(Technology)}
             >
               Technology
             </Link>
@@ -52,6 +62,7 @@ const PublicNavbar = () => {
             <Link
               to="/investor"
               className="text-[#141414] text-[14px] md:text-[16px] lg:text-[18px] hover:text-gray-800 transition-colors px-3 py-2"
+              onClick={() => handleNavigate(Investors)}
             >
               Investors
             </Link>
