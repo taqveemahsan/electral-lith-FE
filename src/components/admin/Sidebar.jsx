@@ -24,11 +24,11 @@ const Sidebar = () => {
               <Link
                 to={item.path}
                 className={`
-                  flex items-center px-6 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-colors
+                  flex items-center px-6 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-colors font-sans
                   ${location.pathname === item.path ? "bg-gray-800 border-l-4 border-blue-500" : ""}
                 `}
               >
-                <span className="mr-3">{item.icon}</span>
+                <span className="mr-3 text-lg">{item.icon}</span>
                 {item.title}
               </Link>
             </li>
