@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
 import "..//../styles/animation.css";
+
 const navLinks = [
   { name: "Technology", path: "/technology" },
   { name: "Investors", path: "/investor" },
@@ -14,11 +15,13 @@ const navLinks = [
 
 const PublicNavbar = () => {
   const [isActive, setIsActive] = useState("Technology");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleNavigate = (item, path) => {
     setIsActive(item);
     navigate(path);
+    setIsMenuOpen(false); // Close the menu after navigation
   };
 
   return (
@@ -32,7 +35,7 @@ const PublicNavbar = () => {
           </span>
         </a>
 
-        {/* Navigation Links */}
+        {/* Desktop Navigation Links */}
         <ul className="hidden md:flex items-center space-x-8 ml-auto px-4 sm:px-6 lg:px-5 animate-fade-in">
           {navLinks?.map((link) => (
             <li key={link.name} className="cursor-pointer">
@@ -51,13 +54,45 @@ const PublicNavbar = () => {
           ))}
         </ul>
 
-        {/* User actions */}
-        <div className="flex items-center space-x-4">
-          <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
-            Sign Up
+        {/* Mobile Menu Icon */}
+        <div className="md:hidden flex items-center">
+          <button
+            className="text-[#141414] focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           </button>
-          <button className="px-4 py-2 text-gray-600 hover:text-gray-900">Log in</button>
         </div>
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      <div
+        className={`${
+          isMenuOpen ? "block" : "hidden"
+        } md:hidden flex flex-col items-center space-y-4 py-4 bg-white shadow-lg absolute top-16 left-0 w-full z-10`}
+      >
+        {navLinks?.map((link) => (
+          <li key={link.name} className="cursor-pointer">
+            <Link
+              to={link.path}
+              className={`text-[#141414] text-[16px] px-3 py-2 rounded-md transition-all duration-300 transform hover:scale-110 hover:bg-gray-200 bounce-on-hover ${
+                isActive === link.name ? "bg-gray-400 text-white underline" : "hover:text-gray-800"
+              }`}
+              onClick={() => handleNavigate(link.name, link.path)}
+            >
+              {link.name}
+            </Link>
+          </li>
+        ))}
       </div>
     </nav>
   );

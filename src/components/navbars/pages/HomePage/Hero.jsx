@@ -27,15 +27,15 @@ export default function Hero() {
   return (
     <section className="container mx-auto px-4 mt-16 p-6">
       {/* Hero Image */}
-      <div className="relative w-full h-[400px] overflow-hidden">
+      <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }} // Use the dynamically fetched image URL
         />
         <div className="absolute inset-0 bg-black/30" /> {/* Overlay for better text readability */}
         {/* Position the text at the bottom-right corner */}
-        <div className="absolute bottom-4 right-4 px-6 py-4 rounded-lg">
-          <h1 className="text-white text-2xl md:text-3xl font-semibold leading-tight">
+        <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 px-6 py-4 rounded-lg max-w-lg">
+          <h1 className="text-white text-xl sm:text-2xl md:text-3xl font-semibold leading-tight">
             <span className="block">{heroContent.title.split("with")[0]}</span>
             <span className="block mt-2">{heroContent.title.split("with")[1]}</span>
           </h1>

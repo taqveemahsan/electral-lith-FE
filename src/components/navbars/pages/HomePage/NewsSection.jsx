@@ -45,21 +45,21 @@ export default function NewsSection() {
   return (
     <section className="container mx-auto px-4 mt-16 p-6">
       <h2 className="text-2xl font-bold mb-10">In the News</h2>
-      <div className="space-y-4 md:space-y-6">
+      <div className="space-y-6 md:space-y-8">
         {news.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row space-y-4 space-x-4 md:space-y-4 md:space-x-6"
+            className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6"
           >
             <img
               onClick={() => navigate(`/article/${item.id}`)}
               src={item.image}
               alt={item.title}
-              className="md:w-72 h-auto object-contain rounded-lg cursor-pointer"
+              className="w-full md:w-72 h-auto object-cover rounded-lg cursor-pointer"
             />
             <div className="flex-1">
               <h3 className="text-xl font-semibold mb-2 line-clamp-2">{item.title}</h3>
-              <p className="text-gray-500">{item.date}</p>
+              <p className="text-gray-500 text-sm">{item.date}</p>
             </div>
           </div>
         ))}

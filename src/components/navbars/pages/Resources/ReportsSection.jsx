@@ -25,11 +25,7 @@ function ReportsSection() {
       <h2 className="text-2xl font-semibold mb-6">Reports</h2>
       <div className="space-y-6">
         {reports.map((report) => (
-          <ReportCard
-            key={report.title}
-            title={report.title}
-            description={report.description}
-          />
+          <ReportCard key={report.title} title={report.title} description={report.description} />
         ))}
       </div>
     </section>
