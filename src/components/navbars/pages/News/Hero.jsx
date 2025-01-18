@@ -8,8 +8,8 @@ function Hero() {
   };
 
   return (
-    <section className="container mx-auto px-4 mt-16 p-6">
-      <div className="relative w-full h-[400px] overflow-hidden">
+    <section className="container mx-auto px-4 mt-8 md:mt-16">
+      <div className="relative w-full h-[300px] md:h-[400px] overflow-hidden rounded-lg">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -18,14 +18,11 @@ function Hero() {
           }}
         />
         {/* Overlay for Readability */}
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/50" />
 
         {/* Text Content */}
-        <div className="absolute bottom-4 right-4 px-6 py-4 rounded-lg">
-          {/* <h1 className="text-white text-3xl md:text-5xl font-bold leading-tight">
-            {herocontent.title}
-          </h1> */}
-          <h1 className="text-white text-2xl md:text-3xl font-semibold leading-tight">
+        <div className="absolute inset-x-4 bottom-4 md:bottom-8 text-white">
+          <h1 className="text-xl md:text-3xl font-semibold leading-tight text-shadow-md">
             <span className="block">{herocontent.title.split("with")[0]}</span>
             <span className="block mt-2">{herocontent.title.split("with")[1]}</span>
           </h1>

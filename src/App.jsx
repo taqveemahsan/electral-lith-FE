@@ -21,56 +21,68 @@ import ManageContact from "./components/admin/ManageContact"; // Import the new 
 import ContactDetail from "./components/admin/ContactDetail";
 import ManageCareers from "./components/admin/ManageCareers";
 import JobDetails from "./components/admin/JobDetails";
+import AdminLogin from "./components/admin/AdminLogin";
+import AdminSignup from "./components/admin/Signup";
 const App = () => {
-  return (
-    <Router>
-      <div className="min-h-screen bg-gray-100">
-        <Routes>
-          {/* Public Routes */}
-          <Route element={<PublicRoutes />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/technology" element={<Technology />} />
-            <Route path="/investor" element={<Investor />} />
-            <Route path="/about-us" element={<About />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/careers" element={<Career />} />
-            <Route path="/job/:id" element={<JobDetails />} />
+    return (
+        <Router>
+            <div className="min-h-screen bg-gray-100">
+                <Routes>
+                    {/* Public Routes */}
+                    <Route element={<PublicRoutes />}>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/technology" element={<Technology />} />
+                        <Route path="/investor" element={<Investor />} />
+                        <Route path="/about-us" element={<About />} />
+                        <Route path="/contact-us" element={<ContactUs />} />
+                        <Route path="/careers" element={<Career />} />
+                        <Route path="/job/:id" element={<JobDetails />} />
 
-            <Route path="/news" element={<News />} />
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/article/:id?" element={<ArticleDetail />} />
-          </Route>
+                        <Route path="/news" element={<News />} />
+                        <Route path="/resources" element={<Resources />} />
+                        <Route path="/article/:id?" element={<ArticleDetail />} />
+                    </Route>
 
-          {/* Authenticated Routes */}
-          <Route element={<AuthenticatedRoutes />}>
-            <Route path="/dashboard" element={<div>Dashboard</div>} />
-            <Route path="/profile" element={<div>Profile</div>} />
-            <Route path="/settings" element={<div>Settings</div>} />
-          </Route>
+                    {/* Admin Login */}
+                    <Route path="/signup" element={<AdminSignup />} />
+                    <Route path="/login" element={<AdminLogin />} />
 
-          {/* Admin Routes */}
-          {/* <Route element={<AuthenticatedRoutes />}>
-            <Route path="/admin" element={<AdminPanel />}>
-              <Route path="banner" element={<AdminBanner />} />
-              <Route path="news" element={<AdminNews />} />
-            </Route>
-          </Route> */}
-          {/* Admin Routes (No Auth Check) */}
-          <Route path="/admin" element={<AdminPanel />}>
-            <Route path="banner" element={<AdminBanner />} />
-            <Route path="news" element={<AdminNews />} />
-            <Route path="contact" element={<ManageContact />} />
-            <Route path="contact/:id" element={<ContactDetail />} />
+                    {/* Admin Protected Routes */}
+                    <Route
+                        path="/admin"
+                        element={
+                            <AuthenticatedRoutes>
+                                <AdminPanel />
+                            </AuthenticatedRoutes>
+                        }
+                    >
+                        <Route path="banner" element={<AdminBanner />} />
+                        <Route path="news" element={<AdminNews />} />
+                        <Route path="contact" element={<ManageContact />} />
+                        <Route path="contact/:id" element={<ContactDetail />} />
+                        <Route path="careers" element={<ManageCareers />} />
+                    </Route>
+                    {/* Authenticated Routes */}
+                    {/* <Route element={<AuthenticatedRoutes />}>
+                        <Route path="/dashboard" element={<div>Dashboard</div>} />
+                        <Route path="/profile" element={<div>Profile</div>} />
+                        <Route path="/settings" element={<div>Settings</div>} />
+                    </Route> */}
 
-            <Route path="careers" element={<ManageCareers />} />
-            {/* <Route path="job/:id" element={<JobDetails />} /> */}
-          </Route>
-          {/* Fallback for undefined routes */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+                    {/* <Route path="/admin" element={<AdminPanel />}>
+                        <Route path="banner" element={<AdminBanner />} />
+                        <Route path="news" element={<AdminNews />} />
+                        <Route path="contact" element={<ManageContact />} />
+                        <Route path="contact/:id" element={<ContactDetail />} />
+
+                        <Route path="careers" element={<ManageCareers />} />
+                    </Route> */}
+                    {/* Fallback for undefined routes */}
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </div>
+        </Router>
+    );
 };
 
 export default App;

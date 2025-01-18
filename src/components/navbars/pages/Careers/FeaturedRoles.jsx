@@ -32,25 +32,29 @@ const FeaturedRoles = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center text-gray-600">Loading...</div>;
+    return <div className="text-center text-gray-600 py-10">Loading...</div>;
   }
 
   if (error) {
-    return <div className="text-center text-red-600">Error: {error}</div>;
+    return <div className="text-center text-red-600 py-10">Error: {error}</div>;
   }
 
   return (
-    <section className="container mx-auto px-4 mt-16 p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-8">Featured roles</h2>
-      <div className="space-y-4">
+    <section className="container mx-auto px-4 mt-16">
+      <h2 className="text-2xl font-bold text-gray-900 mb-8">Featured Roles</h2>
+      <div className="space-y-6">
+        {" "}
+        {/* Stacked layout for one card per row */}
         {jobs.map((job) => (
           <JobCard
             key={job.id}
-            id={job.id} // Passing the job id
+            id={job.id}
             title={job.title}
             location={job.location}
-            department={job.category} // Assuming 'category' maps to department
-            icon={img} // Using default image
+            department={job.category}
+            description={job.description || "No description available"}
+            type={job.type || "Full-Time"}
+            icon={img}
           />
         ))}
       </div>

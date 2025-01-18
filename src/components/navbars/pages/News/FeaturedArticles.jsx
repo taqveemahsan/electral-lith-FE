@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ArticleCard from "./ArticalCard";
-import img1 from "../../../../assets/NewsFeaturedImg1.png";
-import img2 from "../../../../assets/NewsFeaturedImg2.png";
 
 export function FeaturedArticles() {
   const [articles, setArticles] = useState([]);
-  console.log(">>>>>", articles);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -29,8 +26,6 @@ export function FeaturedArticles() {
         console.error(err);
         setError("Failed to load articles. Please try again later.");
         setLoading(false);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -43,7 +38,7 @@ export function FeaturedArticles() {
   return (
     <section className="container mx-auto px-4 py-8">
       <h2 className="text-2xl font-semibold text-gray-900 mb-6">Featured Articles</h2>
-      <div className="space-y-6">
+      <div className="flex flex-col gap-6">
         {articles.map((article) => (
           <ArticleCard key={article.id} newsData={article} />
         ))}

@@ -8,13 +8,20 @@ const HeroSection = () => {
     img: heroImage,
     title: "The future of lithium production is here.",
   };
+
   return (
     <section className="container mx-auto px-4 mt-16 p-6">
       {/* Hero Image Component */}
-      <HeroImage imageUrl={herocontent.img} />
+      <div className="relative">
+        <HeroImage imageUrl={herocontent.img} />
+        {/* Optional Overlay or Additional Styles */}
+        <div className="absolute inset-0 bg-black opacity-30"></div> {/* Optional Overlay */}
+      </div>
 
       {/* Hero Content Component */}
-      <HeroContent title={herocontent.title} />
+      <div className=" mt-6">
+        <HeroContent title={herocontent.title} />
+      </div>
     </section>
   );
 };

@@ -7,12 +7,16 @@ import img5 from "../../../../assets/LeaderShipImg5.png";
 import img6 from "../../../../assets/LeaderShipImg6.png";
 
 const LeaderCard = ({ name, role, image }) => (
-    <div className="text-center flex-shrink-0 w-48">
-        <div className="container mx-auto px-4 mt-16 p-6">
-            <img src={image} alt={`${name}'s photo`} className="w-full h-full object-cover" />
+    <div className="flex flex-col items-center w-full">
+        <img
+            src={image}
+            alt={`${name}'s photo`}
+            className="w-full h-48 object-cover mb-4" // Image will take up full width
+        />
+        <div className="text-left w-full px-4">
+            <h3 className="font-semibold text-lg">{name}</h3>
+            <p className="text-sm text-gray-600">{role}</p>
         </div>
-        <h3 className="font-semibold">{name}</h3>
-        <p className="text-sm text-gray-600">{role}</p>
     </div>
 );
 
@@ -28,8 +32,8 @@ const LeadershipSection = () => {
 
     return (
         <section className="container mx-auto px-4 mt-16 p-6">
-            <h2 className="text-2xl font-semibold mb-4 ">Our Leadership</h2>
-            <div className="grid grid-cols-4 md:grid-cols-5 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+            <h2 className="text-2xl font-semibold mb-8 ">Our Leadership</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                 {leaders.map((leader) => (
                     <LeaderCard key={leader.name} {...leader} />
                 ))}

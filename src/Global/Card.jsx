@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ number, title, description }) => {
   return (
-    <div className="border rounded-lg p-5 flex flex-col items-start transition-transform duration-300 h-72">
+    <div className="border rounded-lg p-5 flex flex-col items-start transition-transform duration-300 h-auto">
       <span className="text-gray-700 text-lg font-bold border-2 border-black rounded-full w-10 h-10 flex items-center justify-center mb-3">
         {number}
       </span>

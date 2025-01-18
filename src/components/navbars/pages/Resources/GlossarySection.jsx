@@ -29,15 +29,17 @@ export function GlossarySection() {
     <section className="container mx-auto px-4 mt-16 p-6">
       <h2 className="text-2xl font-semibold mb-6">Glossary</h2>
       <div className="space-y-4">
-        {glossaryTerms.map((report) => (
+        {glossaryTerms.map((term) => (
           <ReportCard
-            key={report.term}
-            title={report.term}
-            description={report.definition}
+            key={term.term}
+            title={term.term}
+            description={term.definition}
+            showDownload={false} // Pass showDownload as false for Glossary
           />
         ))}
       </div>
     </section>
   );
 }
+
 export default GlossarySection;
