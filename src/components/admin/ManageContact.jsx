@@ -32,7 +32,7 @@ const ManageContact = () => {
     return (
         <div className="container mx-auto p-6">
             <h2 className="text-3xl font-extrabold text-center text-indigo-700 mb-6 underline decoration-indigo-500 decoration-4">
-                Manage Contact List
+                Manage Contact
             </h2>
 
             {loading ? (

@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicRoutes from "./components/routes/PublicRoutes";
-// import Home from "./components/navbars/pages/Home";
 import AuthenticatedRoutes from "./components/routes/AuthenticatedRoutes";
 import NotFound from "./components/navbars/pages/NotFound";
 import HomePage from "./components/navbars/pages/HomePage/HomePage";
@@ -17,12 +16,16 @@ import ArticleDetail from "./components/navbars/pages/News/ArticleDetail";
 import AdminPanel from "./components/admin/AdminPanel"; // Admin panel main component
 import AdminBanner from "./components/admin/AdminBanner"; // Banner component
 import AdminNews from "./components/admin/AdminNews"; // News management component
-import ManageContact from "./components/admin/ManageContact"; // Import the new component
+import ManageContact from "./components/admin/ManageContact"; // Contact management
 import ContactDetail from "./components/admin/ContactDetail";
 import ManageCareers from "./components/admin/ManageCareers";
 import JobDetails from "./components/admin/JobDetails";
 import AdminLogin from "./components/admin/AdminLogin";
 import AdminSignup from "./components/admin/Signup";
+import ManageFAQ from "./components/admin/resources/ManageFAQ";
+import ManageReports from "./components/admin/resources/ManageReports";
+import ManageGlossary from "./components/admin/resources/ManageGlossary";
+
 const App = () => {
     return (
         <Router>
@@ -37,7 +40,6 @@ const App = () => {
                         <Route path="/contact-us" element={<ContactUs />} />
                         <Route path="/careers" element={<Career />} />
                         <Route path="/job/:id" element={<JobDetails />} />
-
                         <Route path="/news" element={<News />} />
                         <Route path="/resources" element={<Resources />} />
                         <Route path="/article/:id?" element={<ArticleDetail />} />
@@ -48,35 +50,19 @@ const App = () => {
                     <Route path="/login" element={<AdminLogin />} />
 
                     {/* Admin Protected Routes */}
-                    <Route
-                        path="/admin"
-                        element={
-                            <AuthenticatedRoutes>
-                                <AdminPanel />
-                            </AuthenticatedRoutes>
-                        }
-                    >
+                    <Route path="/admin" element={<AdminPanel />}>
                         <Route path="banner" element={<AdminBanner />} />
                         <Route path="news" element={<AdminNews />} />
                         <Route path="contact" element={<ManageContact />} />
                         <Route path="contact/:id" element={<ContactDetail />} />
                         <Route path="careers" element={<ManageCareers />} />
+
+                        {/* Nested Admin Routes for Resources */}
+                        <Route path="resources/faq" element={<ManageFAQ />} />
+                        <Route path="resources/reports" element={<ManageReports />} />
+                        <Route path="resources/glossary" element={<ManageGlossary />} />
                     </Route>
-                    {/* Authenticated Routes */}
-                    {/* <Route element={<AuthenticatedRoutes />}>
-                        <Route path="/dashboard" element={<div>Dashboard</div>} />
-                        <Route path="/profile" element={<div>Profile</div>} />
-                        <Route path="/settings" element={<div>Settings</div>} />
-                    </Route> */}
 
-                    {/* <Route path="/admin" element={<AdminPanel />}>
-                        <Route path="banner" element={<AdminBanner />} />
-                        <Route path="news" element={<AdminNews />} />
-                        <Route path="contact" element={<ManageContact />} />
-                        <Route path="contact/:id" element={<ContactDetail />} />
-
-                        <Route path="careers" element={<ManageCareers />} />
-                    </Route> */}
                     {/* Fallback for undefined routes */}
                     <Route path="*" element={<NotFound />} />
                 </Routes>

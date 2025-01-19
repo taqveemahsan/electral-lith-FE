@@ -1,45 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { ReportCard } from "./ReportCard";
 
-const glossaryTerms = [
-  {
-    term: "Sustainable Lithium Extraction",
-    definition:
-      "The process of extracting lithium from the earth using sustainable methods that minimize environmental impact.",
-  },
-  {
-    term: "Extraction Yield",
-    definition:
-      "A measure of the amount of lithium that can be extracted from a given resource using a specific technology.",
-  },
-  {
-    term: "Lithium Refining",
-    definition:
-      "The process of refining lithium into a high-purity form suitable for use in batteries and other applications.",
-  },
-  {
-    term: "Lithium Extraction Footprint",
-    definition:
-      "The environmental impact of lithium extraction, including energy usage, water consumption, and land disturbance.",
-  },
-];
-
 export function GlossarySection() {
-  return (
-    <section className="container mx-auto px-4 mt-16 p-6">
-      <h2 className="text-2xl font-semibold mb-6">Glossary</h2>
-      <div className="space-y-4">
-        {glossaryTerms.map((term) => (
-          <ReportCard
-            key={term.term}
-            title={term.term}
-            description={term.definition}
-            showDownload={false} // Pass showDownload as false for Glossary
-          />
-        ))}
-      </div>
-    </section>
-  );
+    // State to store glossary terms
+    const [glossaryTerms, setGlossaryTerms] = useState([]);
+    const [loading, setLoading] = useState(true); // For loading state
+    const [error, setError] = useState(null); // For error handling
+
+    // Fetch glossary terms from the API
+    useEffect(() => {
+        const fetchGlossary = async () => {
+            try {
+                const response = await axios.get("http://localhost:4001/api/auth/glossary");
+                setGlossaryTerms(response.data.data); // Assuming the data structure is { data: [...] }
+            } catch (err) {
+                setError("Failed to load glossary terms."); // Handle error
+                console.error("Error fetching glossary:", err);
+            } finally {
+                setLoading(false); // Stop loading
+            }
+        };
+
+        fetchGlossary();
+    }, []); // Empty dependency array ensures this runs once when the component mounts
+
+    // Show loading or error messages while fetching
+    if (loading) {
+        return <div>Loading glossary terms...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    // Render glossary terms
+    return (
+        <section className="container mx-auto px-4 mt-16 p-6">
+            <h2 className="text-2xl font-semibold mb-6">Glossary</h2>
+            <div className="space-y-4">
+                {glossaryTerms.map((term) => (
+                    <ReportCard
+                        key={term.term}
+                        title={term.term}
+                        description={term.definition}
+                        showDownload={false} // Pass showDownload as false for Glossary
+                    />
+                ))}
+            </div>
+        </section>
+    );
 }
 
 export default GlossarySection;

@@ -35,28 +35,65 @@ const AdminSignup = () => {
     };
 
     return (
-        <div>
-            {/* Signup form */}
-            <form onSubmit={handleSignup}>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                    required
-                />
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                    required
-                />
-                <button type="submit" disabled={loading}>
-                    {loading ? "Signing up..." : "Sign Up"}
-                </button>
-                {errorMessage && <p>{errorMessage}</p>}
-            </form>
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-xl bg-white p-8 rounded-lg shadow-lg">
+                <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">
+                    Admin Signup
+                </h2>
+                <form onSubmit={handleSignup} className="space-y-6">
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            Email
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            required
+                            className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+                    <div>
+                        <label
+                            htmlFor="password"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Password
+                        </label>
+                        <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter your password"
+                            required
+                            className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className={`w-full py-2 text-white font-semibold rounded-lg ${
+                                loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+                            } transition duration-200`}
+                        >
+                            {loading ? "Signing up..." : "Sign Up"}
+                        </button>
+                    </div>
+                    {errorMessage && (
+                        <p className="text-center text-red-500 text-sm mt-2">{errorMessage}</p>
+                    )}
+                </form>
+                <p className="mt-4 text-center text-sm text-gray-500">
+                    Already have an account?{" "}
+                    <a href="/login" className="text-blue-600 hover:text-blue-700">
+                        Login here
+                    </a>
+                </p>
+            </div>
         </div>
     );
 };
