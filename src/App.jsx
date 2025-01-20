@@ -33,8 +33,10 @@ const App = () => {
                 <Routes>
                     {/* Public Routes */}
                     <Route element={<PublicRoutes />}>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/technology" element={<Technology />} />
+                        <Route path="/" element={<AdminLogin />} />
+                        <Route path="/signup" element={<AdminSignup />} />
+
+                        {/* <Route path="/technology" element={<Technology />} />
                         <Route path="/investor" element={<Investor />} />
                         <Route path="/about-us" element={<About />} />
                         <Route path="/contact-us" element={<ContactUs />} />
@@ -42,12 +44,31 @@ const App = () => {
                         <Route path="/job/:id" element={<JobDetails />} />
                         <Route path="/news" element={<News />} />
                         <Route path="/resources" element={<Resources />} />
-                        <Route path="/article/:id?" element={<ArticleDetail />} />
+                        <Route path="/article/:id?" element={<ArticleDetail />} /> */}
                     </Route>
-
+                    {/* ............... */}
+                    {/* Admin Protected Routes */}
+                    <Route
+                        path="/admin"
+                        element={
+                            <AuthenticatedRoutes>
+                                <AdminPanel />
+                            </AuthenticatedRoutes>
+                        }
+                    >
+                        <Route path="home" element={<HomePage />} />
+                        <Route path="banner" element={<AdminBanner />} />
+                        <Route path="news" element={<AdminNews />} />
+                        <Route path="contact" element={<ManageContact />} />
+                        <Route path="contact/:id" element={<ContactDetail />} />
+                        <Route path="careers" element={<ManageCareers />} />
+                        {/* Nested Admin Routes for Resources */}
+                        <Route path="resources/faq" element={<ManageFAQ />} />
+                        <Route path="resources/reports" element={<ManageReports />} />
+                        <Route path="resources/glossary" element={<ManageGlossary />} />
+                    </Route>
+                    {/* ................. */}
                     {/* Admin Login */}
-                    <Route path="/signup" element={<AdminSignup />} />
-                    <Route path="/login" element={<AdminLogin />} />
 
                     {/* Admin Protected Routes */}
                     <Route path="/admin" element={<AdminPanel />}>
@@ -56,13 +77,7 @@ const App = () => {
                         <Route path="contact" element={<ManageContact />} />
                         <Route path="contact/:id" element={<ContactDetail />} />
                         <Route path="careers" element={<ManageCareers />} />
-
-                        {/* Nested Admin Routes for Resources */}
-                        <Route path="resources/faq" element={<ManageFAQ />} />
-                        <Route path="resources/reports" element={<ManageReports />} />
-                        <Route path="resources/glossary" element={<ManageGlossary />} />
                     </Route>
-
                     {/* Fallback for undefined routes */}
                     <Route path="*" element={<NotFound />} />
                 </Routes>

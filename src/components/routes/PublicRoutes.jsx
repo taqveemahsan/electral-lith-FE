@@ -6,13 +6,13 @@ import PublicNavbar from "../navbars/PublicNavbar";
 import Footer from "../Footer";
 
 const PublicRoutes = () => {
-  return (
-    <>
-      <PublicNavbar />
-      <Outlet />
-      {/* <Footer />   */}
-    </>
-  );
+    return (
+        <>
+            {/* <PublicNavbar /> */}
+            <Outlet />
+            {/* <Footer />   */}
+        </>
+    );
 };
 
 export default PublicRoutes;

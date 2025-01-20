@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const AdminSignup = () => {
     const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -16,12 +17,14 @@ const AdminSignup = () => {
 
         try {
             const response = await axios.post("http://localhost:4001/api/auth/user/signup", {
+                name,
                 email,
                 password,
             });
+            console.log("🚀 ~ handleSignup ~ response:", response);
 
             if (response.status === 201) {
-                navigate("/login"); // Redirect to login page after signup
+                navigate("/"); // Redirect to login page after signup
             } else {
                 setErrorMessage("Something went wrong. Please try again.");
             }
@@ -41,6 +44,21 @@ const AdminSignup = () => {
                     Admin Signup
                 </h2>
                 <form onSubmit={handleSignup} className="space-y-6">
+                    {/* Name Input */}
+                    <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                            Name
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Enter your name"
+                            required
+                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                    </div>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                             Email

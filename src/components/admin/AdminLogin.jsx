@@ -16,25 +16,49 @@ const AdminLogin = () => {
 
         try {
             console.log("Sending request to backend...");
-            const response = await axios.post("http://localhost:4001/api/auth/user/login", {
-                email,
-                password,
-            });
+            setLoading(true); // Show loading state
+
+            // Use POST for secure credential transfer
+            const response = await axios.get(
+                "http://localhost:4001/api/auth/user/login",
+                {
+                    email,
+                    password,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json", // Add Content-Type header
+                    },
+                }
+            );
+
             console.log("Response received:", response);
 
-            if (response.status === 200 && response.data.data.token) {
-                localStorage.setItem("token", response.data.data.token); // Save token
-                navigate("/admin"); // Redirect
+            // Check response and handle success
+            if (response.status === 200 && response.data?.token) {
+                console.log("🚀 ~ Token received:", response.data.token);
+
+                // Save token to local storage
+                localStorage.setItem("authToken", response.data.token);
+
+                // Navigate to admin page
+                navigate("/admin");
             } else {
-                setErrorMessage("Invalid email or password. Please try again.");
+                // Handle invalid credentials or unexpected responses
+                setErrorMessage(
+                    response.data?.message || "Invalid email or password. Please try again."
+                );
             }
         } catch (error) {
-            console.error("Error response:", error.response);
+            // Log error for debugging
+            console.error("Error occurred:", error);
+
+            // Handle error response or fallback to generic message
             setErrorMessage(
                 error.response?.data?.message || "Something went wrong. Please try again."
             );
         } finally {
-            setLoading(false);
+            setLoading(false); // Hide loading state
         }
     };
 
@@ -89,6 +113,12 @@ const AdminLogin = () => {
                         <p className="text-red-500 text-center mt-2 text-sm">{errorMessage}</p>
                     )}
                 </form>
+                <p className="mt-4 text-center text-sm text-gray-500">
+                    Already have an account?{" "}
+                    <a href="/signup" className="text-blue-600 hover:text-blue-700">
+                        Signup here
+                    </a>
+                </p>
             </div>
         </div>
     );
