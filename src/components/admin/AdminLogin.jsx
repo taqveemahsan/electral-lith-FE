@@ -17,9 +17,10 @@ const AdminLogin = () => {
         try {
             console.log("Sending request to backend...");
             setLoading(true); // Show loading state
-
+            console.log("Email                    ..", email);
+            console.log("password                         ..", password);
             // Use POST for secure credential transfer
-            const response = await axios.get(
+            const response = await axios.post(
                 "http://localhost:4001/api/auth/user/login",
                 {
                     email,
