@@ -8,7 +8,7 @@ import Footer from "../Footer";
 const PublicRoutes = () => {
     return (
         <>
-            {/* <PublicNavbar /> */}
+            <PublicNavbar />
             <Outlet />
             {/* <Footer />   */}
         </>

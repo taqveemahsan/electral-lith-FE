@@ -2,24 +2,19 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const ManageFAQ = () => {
-    const [faqs, setFaqs] = useState([]); // Initialize as an empty array
+    const [faqs, setFaqs] = useState([]);
     const [currentFaq, setCurrentFaq] = useState(null);
     const [form, setForm] = useState({ question: "", answer: "" });
     const [isEditing, setIsEditing] = useState(false);
 
-    // Fetch FAQs when the component is mounted
     useEffect(() => {
         const fetchFaqs = async () => {
             try {
                 const response = await axios.get("http://localhost:4001/api/auth/faq");
-                // Check if data exists and is an array
                 if (response.data.success && Array.isArray(response.data.data)) {
                     setFaqs(response.data.data);
-                } else if (response.data.success && response.data.data === null) {
-                    console.log("No FAQs found.");
-                    setFaqs([]); // Set empty array if no data is available
                 } else {
-                    console.error("Failed to load FAQs. Invalid response format.");
+                    setFaqs([]);
                 }
             } catch (error) {
                 console.error("Error fetching FAQs:", error);
@@ -50,16 +45,6 @@ const ManageFAQ = () => {
                 }
             } catch (error) {
                 console.error("Error adding FAQ:", error);
-                // Log the complete error response for better debugging
-                if (error.response) {
-                    console.error("Response Data:", error.response.data);
-                    console.error("Response Status:", error.response.status);
-                    console.error("Response Headers:", error.response.headers);
-                } else if (error.request) {
-                    console.error("Request Data:", error.request);
-                } else {
-                    console.error("Error Message:", error.message);
-                }
             }
         }
     };

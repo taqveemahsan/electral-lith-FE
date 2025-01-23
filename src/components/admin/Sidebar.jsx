@@ -20,23 +20,35 @@ const menuItems = [
 
 const Sidebar = () => {
     const location = useLocation();
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar initially closed
     const [openSubmenu, setOpenSubmenu] = useState(null); // Manage submenu visibility
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Control sidebar open/close
 
     const toggleSubmenu = (title) => {
         setOpenSubmenu((prev) => (prev === title ? null : title));
+    };
+
+    // Optionally, you can add a function to toggle sidebar visibility
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
     };
 
     return (
         <>
             {/* Sidebar */}
             <aside
-                className={`fixed top-0 left-0 z-50 w-64 bg-gray-900 text-white min-h-screen transition-all duration-300 transform ${
+                className={`${
                     isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-                } lg:translate-x-0 lg:relative`} // Sidebar is visible on large screens
+                } fixed top-0 left-0 z-50 w-64 bg-gray-900 text-white min-h-screen transition-transform duration-300 transform lg:relative`}
             >
                 <div className="p-4 border-b border-gray-800">
                     <h2 className="text-2xl font-bold">Admin Panel</h2>
+                    {/* Toggle Button for smaller screens */}
+                    <button
+                        onClick={toggleSidebar}
+                        className="lg:hidden text-white p-2 focus:outline-none"
+                    >
+                        {isSidebarOpen ? "Close" : "Open"} Sidebar
+                    </button>
                 </div>
                 <nav className="mt-6 flex-1">
                     <ul>
@@ -114,27 +126,6 @@ const Sidebar = () => {
                     </div>
                 </div>
             </aside>
-
-            {/* Hamburger Menu for Mobile Screens */}
-            <button
-                className="lg:hidden absolute top-4 left-4 text-white z-50"
-                onClick={() => setIsSidebarOpen(!isSidebarOpen)} // Toggle sidebar visibility
-            >
-                <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4 6h16M4 12h16M4 18h16"
-                    />
-                </svg>
-            </button>
         </>
     );
 };

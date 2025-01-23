@@ -16,10 +16,6 @@ const AdminLogin = () => {
 
         try {
             console.log("Sending request to backend...");
-            setLoading(true); // Show loading state
-            console.log("Email                    ..", email);
-            console.log("password                         ..", password);
-            // Use POST for secure credential transfer
             const response = await axios.post(
                 "http://localhost:4001/api/auth/user/login",
                 {
@@ -34,13 +30,16 @@ const AdminLogin = () => {
             );
 
             console.log("Response received:", response);
+            console.log("Response data:", response.data);
+            console.log("Token:", response.data?.data?.token);
 
-            // Check response and handle success
-            if (response.status === 200 && response.data?.token) {
-                console.log("🚀 ~ Token received:", response.data.token);
+            // Check if token exists
+            if (response.status === 200 && response.data?.data?.token) {
+                const token = response.data.data.token;
+                console.log("🚀 ~ Token received:", token);
 
                 // Save token to local storage
-                localStorage.setItem("authToken", response.data.token);
+                localStorage.setItem("authToken", token);
 
                 // Navigate to admin page
                 navigate("/admin");
@@ -51,7 +50,6 @@ const AdminLogin = () => {
                 );
             }
         } catch (error) {
-            // Log error for debugging
             console.error("Error occurred:", error);
 
             // Handle error response or fallback to generic message

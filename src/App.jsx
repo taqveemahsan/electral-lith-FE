@@ -35,8 +35,8 @@ const App = () => {
                     <Route element={<PublicRoutes />}>
                         <Route path="/" element={<AdminLogin />} />
                         <Route path="/signup" element={<AdminSignup />} />
-
-                        {/* <Route path="/technology" element={<Technology />} />
+                        <Route path="/home" element={<HomePage />} />
+                        <Route path="/technology" element={<Technology />} />
                         <Route path="/investor" element={<Investor />} />
                         <Route path="/about-us" element={<About />} />
                         <Route path="/contact-us" element={<ContactUs />} />
@@ -44,7 +44,7 @@ const App = () => {
                         <Route path="/job/:id" element={<JobDetails />} />
                         <Route path="/news" element={<News />} />
                         <Route path="/resources" element={<Resources />} />
-                        <Route path="/article/:id?" element={<ArticleDetail />} /> */}
+                        <Route path="/article/:id?" element={<ArticleDetail />} />
                     </Route>
                     {/* ............... */}
                     {/* Admin Protected Routes */}
@@ -56,8 +56,9 @@ const App = () => {
                             </AuthenticatedRoutes>
                         }
                     >
-                        <Route path="home" element={<HomePage />} />
-                        <Route path="banner" element={<AdminBanner />} />
+                        <Route path="/admin" index element={<AdminPanel />} />
+
+                        <Route path="banner" index element={<AdminBanner />} />
                         <Route path="news" element={<AdminNews />} />
                         <Route path="contact" element={<ManageContact />} />
                         <Route path="contact/:id" element={<ContactDetail />} />
@@ -71,13 +72,13 @@ const App = () => {
                     {/* Admin Login */}
 
                     {/* Admin Protected Routes */}
-                    <Route path="/admin" element={<AdminPanel />}>
+                    {/* <Route path="/admin" element={<AdminPanel />}>
                         <Route path="banner" element={<AdminBanner />} />
                         <Route path="news" element={<AdminNews />} />
                         <Route path="contact" element={<ManageContact />} />
                         <Route path="contact/:id" element={<ContactDetail />} />
                         <Route path="careers" element={<ManageCareers />} />
-                    </Route>
+                    </Route> */}
                     {/* Fallback for undefined routes */}
                     <Route path="*" element={<NotFound />} />
                 </Routes>

@@ -1,0 +1,50 @@
+/* Custom Styles for the Carousel */
+.slick-prev,
+.slick-next {
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Customize the background */
+    border-radius: 50%; /* Optional: To make arrows round */
+    color: #fff; /* Set the color for the arrows */
+    z-index: 20; /* Ensure arrows are visible on top */
+    font-size: 20px; /* Increase font size for better visibility */
+}
+
+.slick-prev {
+    left: 10px; /* Position the left arrow */
+}
+
+.slick-next {
+    right: 10px; /* Position the right arrow */
+}
+
+.slick-dots {
+    position: absolute; /* Ensure dots are positioned correctly */
+    bottom: 30px; /* Position dots at the bottom */
+    left: 50%; /* Center dots horizontally */
+    transform: translateX(-50%); /* Center the dots */
+    z-index: 30; /* Ensure dots are visible on top */
+}
+
+.slick-dots li button:before {
+    color: #fff; /* Set color for dots */
+    font-size: 16px; /* Adjust the size of the dots */
+}
+
+.slick-dots li.slick-active button:before {
+    color: #fff; /* Set color for active dot */
+    font-size: 18px; /* Make the active dot slightly bigger */
+}
+
+.slick-track {
+    position: relative;
+    z-index: 10; /* Keep track below the dots */
+}
+
+.slick-slide {
+    position: relative;
+}
+
+/* Adjust the container if it's clipping content */
+.container {
+    position: relative;
+    z-index: 5;
+}
