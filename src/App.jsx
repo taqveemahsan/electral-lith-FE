@@ -48,6 +48,7 @@ const App = () => {
                     </Route>
                     {/* ............... */}
                     {/* Admin Protected Routes */}
+
                     <Route
                         path="/admin"
                         element={
@@ -56,18 +57,26 @@ const App = () => {
                             </AuthenticatedRoutes>
                         }
                     >
-                        <Route path="/admin" index element={<AdminPanel />} />
-
                         <Route path="banner" index element={<AdminBanner />} />
                         <Route path="news" element={<AdminNews />} />
                         <Route path="contact" element={<ManageContact />} />
                         <Route path="contact/:id" element={<ContactDetail />} />
                         <Route path="careers" element={<ManageCareers />} />
-                        {/* Nested Admin Routes for Resources */}
                         <Route path="resources/faq" element={<ManageFAQ />} />
                         <Route path="resources/reports" element={<ManageReports />} />
                         <Route path="resources/glossary" element={<ManageGlossary />} />
                     </Route>
+
+                    {/* <Route path="/admin" element={<AdminPanel />}>
+                        <Route path="banner" index element={<AdminBanner />} />
+                        <Route path="news" element={<AdminNews />} />
+                        <Route path="contact" element={<ManageContact />} />
+                        <Route path="contact/:id" element={<ContactDetail />} />
+                        <Route path="careers" element={<ManageCareers />} />
+                        <Route path="resources/faq" element={<ManageFAQ />} />
+                        <Route path="resources/reports" element={<ManageReports />} />
+                        <Route path="resources/glossary" element={<ManageGlossary />} />
+                    </Route> */}
                     {/* ................. */}
                     {/* Admin Login */}
 
