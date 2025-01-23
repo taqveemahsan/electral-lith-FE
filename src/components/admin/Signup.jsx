@@ -105,12 +105,6 @@ const AdminSignup = () => {
                         <p className="text-center text-red-500 text-sm mt-2">{errorMessage}</p>
                     )}
                 </form>
-                <p className="mt-4 text-center text-sm text-gray-500">
-                    Already have an account?{" "}
-                    <a href="/login" className="text-blue-600 hover:text-blue-700">
-                        Login here
-                    </a>
-                </p>
             </div>
         </div>
     );

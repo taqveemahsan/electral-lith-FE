@@ -20,7 +20,7 @@ import ManageContact from "./components/admin/ManageContact"; // Contact managem
 import ContactDetail from "./components/admin/ContactDetail";
 import ManageCareers from "./components/admin/ManageCareers";
 import JobDetails from "./components/admin/JobDetails";
-import AdminLogin from "./components/admin/AdminLogin";
+import AdminLogin from "./components/admin/AdminLogin"; // Admin login page
 import AdminSignup from "./components/admin/Signup";
 import ManageFAQ from "./components/admin/resources/ManageFAQ";
 import ManageReports from "./components/admin/resources/ManageReports";
@@ -33,9 +33,7 @@ const App = () => {
                 <Routes>
                     {/* Public Routes */}
                     <Route element={<PublicRoutes />}>
-                        <Route path="/" element={<AdminLogin />} />
-                        <Route path="/signup" element={<AdminSignup />} />
-                        <Route path="/home" element={<HomePage />} />
+                        <Route path="/" element={<HomePage />} />
                         <Route path="/technology" element={<Technology />} />
                         <Route path="/investor" element={<Investor />} />
                         <Route path="/about-us" element={<About />} />
@@ -46,9 +44,10 @@ const App = () => {
                         <Route path="/resources" element={<Resources />} />
                         <Route path="/article/:id?" element={<ArticleDetail />} />
                     </Route>
-                    {/* ............... */}
-                    {/* Admin Protected Routes */}
-
+                    {/* Admin Routes */}
+                    <Route path="/admin/login" element={<AdminLogin />} /> {/* Admin Login route */}
+                    <Route path="/admin/signup" element={<AdminSignup />} />{" "}
+                    {/* Admin Login route */}
                     <Route
                         path="/admin"
                         element={
@@ -57,7 +56,7 @@ const App = () => {
                             </AuthenticatedRoutes>
                         }
                     >
-                        <Route path="banner" index element={<AdminBanner />} />
+                        <Route path="banner" element={<AdminBanner />} />
                         <Route path="news" element={<AdminNews />} />
                         <Route path="contact" element={<ManageContact />} />
                         <Route path="contact/:id" element={<ContactDetail />} />
@@ -66,28 +65,6 @@ const App = () => {
                         <Route path="resources/reports" element={<ManageReports />} />
                         <Route path="resources/glossary" element={<ManageGlossary />} />
                     </Route>
-
-                    {/* <Route path="/admin" element={<AdminPanel />}>
-                        <Route path="banner" index element={<AdminBanner />} />
-                        <Route path="news" element={<AdminNews />} />
-                        <Route path="contact" element={<ManageContact />} />
-                        <Route path="contact/:id" element={<ContactDetail />} />
-                        <Route path="careers" element={<ManageCareers />} />
-                        <Route path="resources/faq" element={<ManageFAQ />} />
-                        <Route path="resources/reports" element={<ManageReports />} />
-                        <Route path="resources/glossary" element={<ManageGlossary />} />
-                    </Route> */}
-                    {/* ................. */}
-                    {/* Admin Login */}
-
-                    {/* Admin Protected Routes */}
-                    {/* <Route path="/admin" element={<AdminPanel />}>
-                        <Route path="banner" element={<AdminBanner />} />
-                        <Route path="news" element={<AdminNews />} />
-                        <Route path="contact" element={<ManageContact />} />
-                        <Route path="contact/:id" element={<ContactDetail />} />
-                        <Route path="careers" element={<ManageCareers />} />
-                    </Route> */}
                     {/* Fallback for undefined routes */}
                     <Route path="*" element={<NotFound />} />
                 </Routes>

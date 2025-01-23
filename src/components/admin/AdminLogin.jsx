@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const AdminLogin = () => {
     const [email, setEmail] = useState("");
@@ -15,49 +15,28 @@ const AdminLogin = () => {
         setLoading(true);
 
         try {
-            console.log("Sending request to backend...");
             const response = await axios.post(
                 "http://localhost:4001/api/auth/user/login",
-                {
-                    email,
-                    password,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json", // Add Content-Type header
-                    },
-                }
+                { email, password },
+                { headers: { "Content-Type": "application/json" } }
             );
 
-            console.log("Response received:", response);
-            console.log("Response data:", response.data);
-            console.log("Token:", response.data?.data?.token);
-
-            // Check if token exists
             if (response.status === 200 && response.data?.data?.token) {
                 const token = response.data.data.token;
-                console.log("🚀 ~ Token received:", token);
-
-                // Save token to local storage
                 localStorage.setItem("authToken", token);
-
-                // Navigate to admin page
+                localStorage.setItem("user", true);
                 navigate("/admin");
             } else {
-                // Handle invalid credentials or unexpected responses
                 setErrorMessage(
                     response.data?.message || "Invalid email or password. Please try again."
                 );
             }
         } catch (error) {
-            console.error("Error occurred:", error);
-
-            // Handle error response or fallback to generic message
             setErrorMessage(
                 error.response?.data?.message || "Something went wrong. Please try again."
             );
         } finally {
-            setLoading(false); // Hide loading state
+            setLoading(false);
         }
     };
 
@@ -112,12 +91,6 @@ const AdminLogin = () => {
                         <p className="text-red-500 text-center mt-2 text-sm">{errorMessage}</p>
                     )}
                 </form>
-                <p className="mt-4 text-center text-sm text-gray-500">
-                    Already have an account?{" "}
-                    <a href="/signup" className="text-blue-600 hover:text-blue-700">
-                        Signup here
-                    </a>
-                </p>
             </div>
         </div>
     );

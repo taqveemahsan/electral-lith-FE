@@ -1,11 +1,13 @@
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import { isAuthenticated } from "../utils/auth"; // Custom function to check token
+import { Navigate } from "react-router-dom";
+import { isAuthenticated } from "../utils/auth";
 
 const AuthenticatedRoutes = ({ children }) => {
-    if (isAuthenticated()) return children;
-
-    return <Navigate to="/" replace />;
+    return isAuthenticated() ? (
+        children // Agar authenticated hai, to children (admin panel) render ho
+    ) : (
+        <Navigate to="/admin/login" replace /> // Agar authenticated nahi hai, to login page par redirect ho
+    );
 };
 
 export default AuthenticatedRoutes;
